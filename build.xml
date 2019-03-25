@@ -40,7 +40,7 @@
 
     <target name="junit">
 	<mkdir dir="${report}"/>
-        <junit printsummary="yes">
+        <junit printsummary="yes" haltonfailure="no" failureproperty="test.failed">
             <classpath>
                 <path refid="classpath"/>
 		<path refid="application"/>
@@ -53,6 +53,7 @@
 		    <fileset dir="${src}" includes="tests/*Test.java"/>
             </batchtest>
         </junit>
+	<fail message="Test failure detected, check test results." if="test.failed" />
     </target>
 
     <target name="junitreport">
